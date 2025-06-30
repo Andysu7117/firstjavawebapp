@@ -12,6 +12,7 @@ public class FirstjavawebappApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(FirstjavawebappApplication.class, args);
 		logger.info("Welcome to my first java webapp");
+		logger.info("Does this change on save");
 	}
 
 }
