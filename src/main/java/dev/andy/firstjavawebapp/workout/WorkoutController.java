@@ -2,11 +2,12 @@ package dev.andy.firstjavawebapp.workout;
 
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestParam;
-
 
 @RestController
+@RequestMapping("/api/workouts")
 public class WorkoutController {
     private WorkoutRepository workoutRepository;
 
@@ -14,17 +15,14 @@ public class WorkoutController {
         this.workoutRepository = workoutRepository;
     }
     
-    public String getMethodName(@RequestParam String param) {
-        return new String();
-    }
-    
-    @GetMapping("/api/workouts")
+    @GetMapping("")
     List<Workout> findAll() {
         return workoutRepository.findAll();
     }
 
-    @GetMapping("/hello")
-    String home() {
-        return "Welcome to your workouts";
+    @GetMapping("/{id}")
+    Workout findById(@PathVariable("id") Integer id) {
+        return workoutRepository.findById(id);
     }
+    
 }

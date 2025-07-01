@@ -17,6 +17,13 @@ public class WorkoutRepository {
         return workouts;
     }
 
+    Workout findById(Integer id) {
+        return workouts.stream()
+                .filter(workout -> workout.id() == id)
+                .findFirst()
+                .get();
+    }
+
     @PostConstruct
     private void init() {
         Set set1 = new Set(1, "Bicep Curls", 8, LocalDateTime.now(), LocalDateTime.now().plus(42, ChronoUnit.SECONDS), 42);
