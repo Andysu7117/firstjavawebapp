@@ -3,6 +3,7 @@ package dev.andy.firstjavawebapp.workout;
 import java.util.List;
 
 public record Workout(
-    List<Set> sets,
-    String workoutName
+    Integer id,
+    String workoutName,
+    List<Set> sets
 ) {}
