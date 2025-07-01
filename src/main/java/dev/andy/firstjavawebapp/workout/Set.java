@@ -1,6 +1,7 @@
 package dev.andy.firstjavawebapp.workout;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Set {
     private Integer reps;
@@ -29,5 +30,32 @@ public class Set {
 
     public Integer getDuration() {
         return this.duration;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Set set = (Set) o;
+        if (Objects.equals(reps, set.getReps())) {
+            return true;
+        }
+
+        if (Objects.equals(setStarted, set.getStarted())) {
+            return true;
+        }
+
+        if (Objects.equals(setCompleted, set.getCompleted())) {
+            return true;
+        }
+
+        if (Objects.equals(duration, set.getDuration())) {
+            return true;
+        }
+
+        return false;
     }
 }
