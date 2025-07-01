@@ -6,19 +6,19 @@ import java.util.ArrayList;
 
 public class Workout {
     private List<Set> sets = new ArrayList<>();
-    private String exercise;
+    private String workoutName;
 
-    public Workout(List<Set> sets, String exercise) {
+    public Workout(List<Set> sets, String workOutName) {
         this.sets = sets;
-        this.exercise = exercise;
+        this.workoutName = workOutName;
     }
 
     public List<Set> getSets() {
         return this.sets;
     }
 
-    public String getExercise() {
-        return this.exercise;
+    public String getWorkoutName() {
+        return this.workoutName;
     }
 
     @Override
@@ -28,8 +28,16 @@ public class Workout {
         if (o == null || this.getClass() != o.getClass()) {
             return false;
         }
-        
+
         Workout workout = (Workout) o;
-        return Objects.equals(sets, workout.getSets()) && Objects.equals(exercise, workout.getExercise());
+        return Objects.equals(sets, workout.getSets()) && Objects.equals(workoutName, workout.getWorkoutName());
+    }
+
+    @Override
+    public String toString() {
+        return "Workout{" +
+                "WorkoutName=" + workoutName +
+                ", sets=" + sets +
+                "}";
     }
 }
