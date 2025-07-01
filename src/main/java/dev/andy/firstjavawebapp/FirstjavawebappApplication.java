@@ -34,9 +34,3 @@ public class FirstjavawebappApplication {
 	}
 
 }
-
-//     String exercise,
-    // Integer reps,
-    // LocalDateTime setStarted,
-    // LocalDateTime setCompleted,
-    // Integer duration
