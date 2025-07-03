@@ -1,10 +1,14 @@
 package dev.andy.firstjavawebapp.workout;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/workouts")
@@ -22,7 +26,11 @@ public class WorkoutController {
 
     @GetMapping("/{id}")
     Workout findById(@PathVariable("id") Integer id) {
-        return workoutRepository.findById(id);
+        Optional<Workout> workout = workoutRepository.findById(id);
+        if (workout.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return workout.get();
     }
     
 }

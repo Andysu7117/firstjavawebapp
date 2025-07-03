@@ -5,6 +5,7 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.ArrayList;
 
 @Repository
@@ -15,11 +16,10 @@ public class WorkoutRepository {
         return workouts;
     }
 
-    Workout findById(Integer id) {
+    Optional<Workout> findById(Integer id) {
         return workouts.stream()
                 .filter(workout -> workout.getId() == id)
-                .findFirst()
-                .get();
+                .findFirst();
     }
 
     @PostConstruct
