@@ -7,34 +7,42 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Repository
 public class WorkoutRepository {
-    private List<Workout> workouts = new ArrayList<>();
+    private Map<Integer, Workout> workouts = new HashMap<>();
 
     List<Workout> findAll() {
-        return workouts;
+        return new ArrayList<>(workouts.values());
     }
 
     Optional<Workout> findById(Integer id) {
-        return workouts.stream()
-                .filter(workout -> workout.getId() == id)
-                .findFirst();
+        return Optional.ofNullable(workouts.get(id));
     }
 
     void createNewWorkout(Workout workout) {
-        workouts.add(workout);
+        workouts.put(workout.getId(), workout);
+    }
+
+    void updateWorkout(Integer id, Workout updatedWorkout) {
+        Workout existing = workouts.get(id);
+
+        if (updatedWorkout.getWorkoutName() != null) {
+            existing.setWorkoutName(updatedWorkout.getWorkoutName());
+        }
     }
 
     Optional<List<WorkoutSet>> findAllSets(Integer id) {
-        return workouts.stream().filter(workout -> workout.getId() == id).map(Workout::getSets).findFirst();
+        return Optional.ofNullable(workouts.get(id).getSets());
     }
 
     @PostConstruct
     private void init() {
-        workouts.add(new Workout(1,
+        workouts.put(1, new Workout(1,
                         "Workout1"));
-        workouts.add(new Workout(2,
+        workouts.put(2, new Workout(2,
                         "Workout2"));
     }
 }
