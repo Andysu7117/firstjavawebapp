@@ -1,17 +1,21 @@
 package dev.andy.firstjavawebapp.workout;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Workout {
     Integer id;
     String workoutName;
     List<WorkoutSet> sets = new ArrayList<>();
 
-    public Workout(Integer id, String workoutName) {
+    @JsonCreator
+    public Workout(
+        @JsonProperty("id") Integer id,
+        @JsonProperty("workoutName") String workoutName
+    ) {
         this.id = id;
         this.workoutName = workoutName;
     }
@@ -22,6 +26,10 @@ public class Workout {
 
     public String getWorkoutName() {
         return this.workoutName;
+    }
+
+    public void setWorkoutName(String workoutName) {
+        this.workoutName = workoutName;
     }
 
     public List<WorkoutSet> getSets() {
