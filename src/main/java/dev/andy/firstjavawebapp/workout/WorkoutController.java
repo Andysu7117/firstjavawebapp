@@ -32,5 +32,13 @@ public class WorkoutController {
         }
         return workout.get();
     }
-    
+
+    @GetMapping("/{id}/sets")
+    List<WorkoutSet> findAllSets(@PathVariable("id") Integer id) {
+        Optional<List<WorkoutSet>> sets = workoutRepository.findAllSets(id);
+        if (sets.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        return sets.get();
+    }
 }

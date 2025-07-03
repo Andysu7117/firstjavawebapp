@@ -22,6 +22,10 @@ public class WorkoutRepository {
                 .findFirst();
     }
 
+    Optional<List<WorkoutSet>> findAllSets(Integer id) {
+        return workouts.stream().filter(workout -> workout.getId() == id).map(Workout::getSets).findFirst();
+    }
+
     @PostConstruct
     private void init() {
         workouts.add(new Workout(1,
