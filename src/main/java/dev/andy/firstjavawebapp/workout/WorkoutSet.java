@@ -2,7 +2,7 @@ package dev.andy.firstjavawebapp.workout;
 
 import java.time.LocalDateTime;
 
-public record Set(
+public record WorkoutSet(
     Integer id,
     String exercise,
     Integer reps,

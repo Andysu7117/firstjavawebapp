@@ -1,7 +1,7 @@
 package dev.andy.firstjavawebapp;
 
 import dev.andy.firstjavawebapp.workout.Workout;
-import dev.andy.firstjavawebapp.workout.Set;
+import dev.andy.firstjavawebapp.workout.WorkoutSet;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -26,9 +26,11 @@ public class FirstjavawebappApplication {
 	@Bean
 	CommandLineRunner runner() {
 		return args -> {
-			Set set1 = new Set(1, "Bicep Curls", 8, LocalDateTime.now(), LocalDateTime.now().plus(42, ChronoUnit.SECONDS), 42);
-			Set set2 = new Set(2, "Bicep Curls", 8, LocalDateTime.now().plus(2, ChronoUnit.MINUTES), LocalDateTime.now().plus(3, ChronoUnit.MINUTES), 60);
-			Workout workout = new Workout(1, "Workout1", List.of(set1, set2));
+			WorkoutSet set1 = new WorkoutSet(1, "Bicep Curls", 8, LocalDateTime.now(), LocalDateTime.now().plus(42, ChronoUnit.SECONDS), 42);
+			WorkoutSet set2 = new WorkoutSet(2, "Bicep Curls", 8, LocalDateTime.now().plus(2, ChronoUnit.MINUTES), LocalDateTime.now().plus(3, ChronoUnit.MINUTES), 60);
+			Workout workout = new Workout(1, "Workout1");
+			workout.addSet(set1);
+			workout.addSet(set2);
 			logger.info("Workout" + workout);
 		};
 	}
